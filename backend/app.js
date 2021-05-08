@@ -1,11 +1,7 @@
-const express = require('express')
-const app = express()
-const port = 3000
+var http = require('http')
+    ,app = require('./config/express')
+    db = require('./config/database');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+http.createServer(app).listen(3000, function() {
+    console.log('Servidor escutando na porta: ' + this.address().port);
+});
