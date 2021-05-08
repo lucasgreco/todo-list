@@ -1,9 +1,9 @@
-
 angular
     .module('todoList')
     .component('todoList', {
         controller: 'TodoListController',
-        templateUrl : 'todo-list.template.html',
+        templateUrl : '/pages/todo-list/todo-list.template.html',
+        // template:template
     })
     .controller('TodoListController', function($scope, $routeParams, $http) {
       var todoList = this;
