@@ -5,11 +5,11 @@ module.exports  = function(app) {
     
     app.route('/task')
         .post(api.adiciona)
-        .get(api.lista);
+        .get(api.lista)
+        .put(api.atualiza);
 
     app.route('/task/:taskId')
-        .delete(api.remove)
-        .get(api.busca)
-        .put(api.atualiza);
+        .get(api.busca);
+        
 
 };

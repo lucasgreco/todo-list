@@ -17,7 +17,6 @@ api.busca = function(req, res) {
         `SELECT * FROM todo_task WHERE id = ${req.params.taskId}`,
         (err, result) => {
             if (err) throw err
-            console.log(result);
             if (result) res.status(200).json(...result);
         }
     )
@@ -25,31 +24,29 @@ api.busca = function(req, res) {
 };
 
 api.atualiza = function(req, res) {
-    
-    db.update({_id : req.params.fotoId }, req.body, function(err, numReplaced) {
-        if (err) return console.log(err);
-        if(numReplaced) res.status(200).end();
-        res.status(500).end();
-        console.log('Atualizado com sucesso: ' + req.body._id);
-        res.status(200).end();
-    });  
+    db.query(
+        `UPDATE todo_task SET
+        description = '${req.body.description}',
+        responsable = '${req.body.responsable}',
+        email = '${req.body.email}',
+        status = '${req.body.status}'
+        WHERE id = ${req.body.id}`, 
+        (err, result) => {
+            if (err) throw err
+            if (result) res.status(200).json(result);
+        }
+    )    
+
 };
 
 api.lista = function(req, res) {
-    db.find({}).sort({titulo: 1}).exec(function(err, doc) {
-        if (err) return console.log(err);
-        res.json(doc);
-    });
-};
+    db.query(
+        'SELECT * FROM todo_task',
+        (err, result) => {
+            if (err) throw err
+            if (result) res.status(200).json(result);
+        })
 
-api.remove = function(req, res) {
-
-    db.remove({ _id: req.params.fotoId }, {}, function (err, numRemoved) {
-        if (err) return console.log(err);
-        console.log('removido com sucesso');
-        if(numRemoved) res.status(200).end();
-        res.status(500).end();
-    });
 };
 
 
