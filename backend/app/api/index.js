@@ -40,6 +40,7 @@ api.atualiza = function(req, res) {
 };
 
 api.lista = function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
     db.query(
         'SELECT * FROM todo_task',
         (err, result) => {

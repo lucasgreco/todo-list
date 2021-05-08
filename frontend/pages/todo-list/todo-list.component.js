@@ -7,6 +7,16 @@ angular
     })
     .controller('TodoListController', function($scope, $routeParams, $http) {
       var todoList = this;
+
+      $http.get('http://localhost:3000/task')
+      .then(
+        res => {
+          console.log(res);
+        }, 
+        err => {
+          console.log(err);
+        });
+
       todoList.todos = [
         {text:'learn AngularJS', done:true},
         {text:'build an AngularJS app', done:false}];
