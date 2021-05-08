@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for a To-Do List application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasgreco/todo-list.git"
+  },
+  "author": "Lucas Greco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasgreco/todo-list/issues"
+  },
+  "homepage": "https://github.com/lucasgreco/todo-list#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
