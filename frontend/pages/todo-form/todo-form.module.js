@@ -1,1 +1,2 @@
-angular.module('todoForm', ['apiServiceModule']);
+app = angular.module('todoForm', ['apiServiceModule']);
+

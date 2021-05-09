@@ -8,6 +8,9 @@ app.factory('apiService', ($http, $routeParams) => {
         postTask: (task) => {
             return $http.post(`${url}/task`,task);
         },
+        putTask: (task) => {
+            return $http.put(`${url}/task`,task);
+        }
         
     }
 })

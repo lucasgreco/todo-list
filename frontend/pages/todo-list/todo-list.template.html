@@ -9,8 +9,9 @@
     <ul class="unstyled">
     <li ng-repeat="todo in todos" ng-if="checkPendent(todo)">
         <label class="checkbox">
-        <input type="checkbox" ng-model="todo.status">
-        <span class="done-{{todo.status != 'pendente'}}">{{todo.description}}</span>
+            <span class="done-{{todo.status != 'pendente'}}">{{todo.description}}</span>
+            <button ng-Click="changeStatusTask(todo,'concluida')" ng-if="todo.status == 'pendente'">Concluir</button>
+            <button ng-Click="askPermission(todo)" ng-if="todo.status != 'pendente'" ng-disabled="todo.reset_status_count >= 2">Devolver Tarefa</button>
         </label>
     </li>
     </ul>

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lucasgreco/todo-list#readme",
   "dependencies": {
+    "angular-popeye": "^1.0.5",
     "angularjs": "0.0.1",
     "http-server": "^0.12.3"
   }

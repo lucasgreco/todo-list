@@ -5,10 +5,11 @@ angular
         templateUrl : '/pages/todo-list/todo-list.template.html',
         // template:template
     })
-    .controller('TodoListController', function($scope, apiService, $http) {
+    .controller('TodoListController', function($scope, apiService, $http, Popeye) {
       $scope.todos = [];
-
       $scope.exibPendent = true;
+
+
 
       $scope.loadTask = () => {
         apiService.getTasks().then(
@@ -21,6 +22,7 @@ angular
       }
 
       $scope.loadTask();
+
       $scope.checkPendent = (todo) => {
         if((todo.status == 'pendente') == $scope.exibPendent){
           return true
@@ -29,7 +31,34 @@ angular
         }
       }
 
+      $scope.changeStatusTask = (task, status) => {
+        let editedTask = task;
+        editedTask.status = status
+        apiService.putTask(editedTask).then(
+          res => {
+            $scope.loadTask();
+          }, err => {
+            console.log(err);
+          }
+        )
+      }
       
+      $scope.askPermission = (task) => {
+        //abrir modal para entrar com senha
+        var modal = Popeye.openModal({
+          templateUrl: "./pages/todo-list/modal.template.html",
+          controller: 'ModalCtrl',
+        });
+
+        // Update user after modal is closed
+        modal.closed.then(function(res) {
+          if(res.rightPassword){
+            task.reset_status_count = task.reset_status_count+1;
+            console.log(task);
+             $scope.changeStatusTask(task,'pendente');
+          }
+        });
+      }
 
       $scope.remaining = function() {
         var count = 0;

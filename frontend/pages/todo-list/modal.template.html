@@ -1,0 +1,11 @@
+
+<div class="popeye-modal-container demo-container boring" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="popeye-modal" ng-controller="ModalCtrl">
+      <a class="popeye-close-modal" href ng-click="$close({rightPassword:false})"></a>
+      <h1>Insira a senha do administrador:</h1>
+      <input type="text" ng-model="password">
+      <button ng-click="teste()">Confirmar</button>
+      <span ng-if="wrongPassword">Senha incorreta</span>
+    </div>
+</div>
+

@@ -26,8 +26,8 @@ api.busca = function(req, res) {
 
 api.atualiza = function(req, res) {
     db.query(
-        'UPDATE todo_task SET description = ?, responsable = ?, email = ?, status = ?WHERE id = ?',
-        [req.body.description, req.body.responsable, req.body.email, req.body.status, req.body.id], 
+        'UPDATE todo_task SET description = ?, responsable = ?, email = ?, status = ?, reset_status_count = ? WHERE id = ?',
+        [req.body.description, req.body.responsable, req.body.email, req.body.status,req.body.reset_status_count, req.body.id], 
         (err, result) => {
             if (err) throw err
             if (result) res.status(200).json(result);

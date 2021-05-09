@@ -2,3 +2,23 @@
     text-decoration: line-through;
     color: grey;
   }
+
+.popeye-modal-container {
+  background-color: rgba(0, 0, 0, 0.2);
+
+  
+}
+.ng-enter {
+  animation: none;
+
+}
+.ng-enter .popeye-modal {
+  animation: none;
+}
+.ng-leave {
+  animation: none;
+
+}
+.ng-leave .popeye-modal {
+  animation: none;
+}
