@@ -5,31 +5,22 @@ angular
         templateUrl : '/pages/todo-list/todo-list.template.html',
         // template:template
     })
-    .controller('TodoListController', function($scope, $routeParams, $http) {
+    .controller('TodoListController', function($scope, $routeParams, apiService) {
       var todoList = this;
+      todoList.todos = [];
 
-      $http.get('http://localhost:3000/task')
-      .then(
+      apiService.getTasks().then(
         res => {
-          console.log(res);
+          todoList.todos = res.data;
         }, 
         err => {
-          console.log(err);
+            console.log(err);
         });
 
-      todoList.todos = [
-        {text:'learn AngularJS', done:true},
-        {text:'build an AngularJS app', done:false}];
-  
-      todoList.addTodo = function() {
-        todoList.todos.push({text:todoList.todoText, done:false});
-        todoList.todoText = '';
-      };
-  
       todoList.remaining = function() {
         var count = 0;
         angular.forEach(todoList.todos, function(todo) {
-          count += todo.done ? 0 : 1;
+          count += todo.status == 'pendente' ? 0 : 1;
         });
         return count;
       };
@@ -38,7 +29,7 @@ angular
         var oldTodos = todoList.todos;
         todoList.todos = [];
         angular.forEach(oldTodos, function(todo) {
-          if (!todo.done) todoList.todos.push(todo);
+          if (todo.status != 'pentende') todoList.todos.push(todo);
         });
       };
 });

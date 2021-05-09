@@ -1,0 +1,8 @@
+<div  ng-controller="TodoFormController as todoForm">
+    <h1>{{todoForm.test}}</h1>
+    <form ng-submit="todoForm.addTodo()">
+        <input type="text" ng-model="todoForm.todoText"  size="30"
+                placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+    </form>
+</div>
