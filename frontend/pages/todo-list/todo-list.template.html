@@ -1,14 +1,18 @@
 <h2>Todo</h2>
-<div ng-controller="TodoListController as todoList">
-    <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-    [ <a href="" ng-click="todoList.archive()">archive</a> ]
+<div ng-controller="TodoListController">
+    <span>{{remaining()}} of {{todos.length}} remaining</span>
+    [ <a href="" ng-click="archive()">archive</a> ]
+    <label class="checkbox">
+        <input type="checkbox" ng-model="exibPendent">
+        <span class="">Exibir pendentes</span>
+    </label>
     <ul class="unstyled">
-    <li ng-repeat="todo in todoList.todos">
+    <li ng-repeat="todo in todos" ng-if="checkPendent(todo)">
         <label class="checkbox">
         <input type="checkbox" ng-model="todo.status">
-        <span class="done-{{todo.status == 'pendente'}}">{{todo.description}}</span>
+        <span class="done-{{todo.status != 'pendente'}}">{{todo.description}}</span>
         </label>
     </li>
     </ul>
-
+    <button ng-click="newTasks()">Estou sem tarefas</button>
 </div>
