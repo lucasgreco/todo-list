@@ -16,6 +16,8 @@ angular
             });
 
         };
+        
+        $scope.return = () =>  $location.path("/");
     })
     .directive('validEmail', function($http, $q, $timeout) {
         return {

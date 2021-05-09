@@ -1,8 +1,29 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+}
 .done-true {
     text-decoration: line-through;
     color: grey;
   }
 
+
+.task-row{
+  display: flex;
+  justify-content: space-between;
+}
+.task-row button:disabled,
+button[disabled] { 
+  color: gray;
+  border-color: gray;
+}
+
+.form-holder{
+  display: flex;
+  align-items: center;
+}
+.form-holder input {
+  margin: 15px 0;
+}
 .popeye-modal-container {
   background-color: rgba(0, 0, 0, 0.2);
 

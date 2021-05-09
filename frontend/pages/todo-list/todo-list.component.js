@@ -5,11 +5,11 @@ angular
         templateUrl : '/pages/todo-list/todo-list.template.html',
         // template:template
     })
-    .controller('TodoListController', function($scope, apiService, $http, Popeye) {
+    .controller('TodoListController', function($scope, apiService, $http, Popeye, $location) {
       $scope.todos = [];
       $scope.exibPendent = true;
 
-
+      $scope.redirectForm = () => $location.path("/form");
 
       $scope.loadTask = () => {
         apiService.getTasks().then(
@@ -69,38 +69,37 @@ angular
       };
   
       $scope.archive = function() {
-        var oldTodos = $scope.todos;
-        $scope.todos = [];
-        angular.forEach(oldTodos, function(todo) {
-          if (todo.status != 'pendente') $scope.todos.push(todo);
-        });
-      };
+        console.log($scope.todos);
+      }
+      // $scope.archive = function() {
+      //   var oldTodos = $scope.todos;
+      //   $scope.todos = [];
+      //   angular.forEach(oldTodos, function(todo) {
+      //     if (todo.status != 'pendente') $scope.todos.push(todo);
+      //   });
+      // };
 
-      // $scope.nextTask = (tasks, index) => {
-      //   if(index == 3){
-      //     $scope.loadTask();
-      //   }else{
-      //     apiService.postTask({description:tasks.data[index].text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
-      //     .then(
-      //       res => {
-      //         let j = index+1;
-      //         $scope.nextTask(tasks,j)
-      //       }, 
-      //       err => {
-      //           console.log(err);
-      //       }
-      //     )
-      //   }
-      // }
+      $scope.nextTask = (tasks, index) => {
+        if(index == 3){
+          $scope.loadTask();
+        }else{
+          apiService.postTask({description:tasks.data[index].text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
+          .then(
+            res => {
+              let j = index+1;
+              $scope.nextTask(tasks,j)
+            }, 
+            err => {
+                console.log(err);
+            }
+          )
+        }
+      }
 
       $scope.newTasks = () => {
         $http.get('https://cat-fact.herokuapp.com/facts/random?animal_type=dog&amount=3').then(
           res => {
-            res.data.map(task => {
-              apiService.postTask({description:task.text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
-            })
-            // $scope.nextTask(res, 0);
-            $scope.loadTask();
+            $scope.nextTask(res, 0);
           },
           err => {
             console.log(err);
