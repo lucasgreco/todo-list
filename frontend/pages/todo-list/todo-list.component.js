@@ -65,14 +65,9 @@ angular
       }
 
       $scope.newTasks = () => {
-        $http.get('https://cat-fact.herokuapp.com/facts?anymal_type=dog').then(
+        $http.get('https://cat-fact.herokuapp.com/facts/random?animal_type=dog&amount=3').then(
           res => {
-            // for(i=0;i<3;i++){
-            //   apiService.postTask({description:res.data[i].text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
-            //   console.log(i);
-            // }
             $scope.nextTask(res, 0);
-            console.log('fim');
             $scope.loadTask();
           },
           err => {
