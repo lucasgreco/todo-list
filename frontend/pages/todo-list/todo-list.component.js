@@ -47,27 +47,30 @@ angular
         });
       };
 
-      $scope.nextTask = (tasks, index) => {
-        if(index == 3){
-          $scope.loadTask();
-        }else{
-          apiService.postTask({description:tasks.data[index].text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
-          .then(
-            res => {
-              let j = index+1;
-              $scope.nextTask(tasks,j)
-            }, 
-            err => {
-                console.log(err);
-            }
-          )
-        }
-      }
+      // $scope.nextTask = (tasks, index) => {
+      //   if(index == 3){
+      //     $scope.loadTask();
+      //   }else{
+      //     apiService.postTask({description:tasks.data[index].text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
+      //     .then(
+      //       res => {
+      //         let j = index+1;
+      //         $scope.nextTask(tasks,j)
+      //       }, 
+      //       err => {
+      //           console.log(err);
+      //       }
+      //     )
+      //   }
+      // }
 
       $scope.newTasks = () => {
         $http.get('https://cat-fact.herokuapp.com/facts/random?animal_type=dog&amount=3').then(
           res => {
-            $scope.nextTask(res, 0);
+            res.data.map(task => {
+              apiService.postTask({description:task.text,responsable:'Eu', email:'eu@me.com', status:"pendente"})
+            })
+            // $scope.nextTask(res, 0);
             $scope.loadTask();
           },
           err => {
