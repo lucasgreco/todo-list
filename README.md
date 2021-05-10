@@ -14,7 +14,7 @@
 
 
 ## 🔖 Sobre
-To-do list simples
+Este projeto é uma SPA desenvolvida com AngularJS no frontend, NodeJS no backend utilizando banco relacional MySQL. Se trata de uma aplicação simples que consiste em uma lista de tarefas onde você pode adicionar, concluir, reativar tarefas.
 
 
 ## ⚡ Funcionalidades
