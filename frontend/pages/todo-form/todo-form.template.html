@@ -1,21 +1,21 @@
 <div  ng-controller="TodoFormController">
     <h2 class="text-center">Adicione uma nova tarefa.</h2>
-    <form class="form-holder card" name="form" ng-submit="submit()" novalidate>
+    <form class="form-holder card row" name="form" ng-submit="submit()" novalidate>
 
-        <input class="form-control col-4" type="text" ng-model="description"  size="30"
+        <input class="form-control col-12 col-md-6 col-lg-4" type="text" ng-model="description"  size="30"
         placeholder="Descrição" required>
 
-        <input class="form-control col-4" type="text" ng-model="responsable"  size="30"
+        <input class="form-control col-12 col-md-6 col-lg-4" type="text" ng-model="responsable"  size="30"
         placeholder="Responsavel" required>
 
-        <input class="form-control col-4" type="email" ng-model="email" name="email"  size="30"
+        <input class="form-control col-12 col-md-6 col-lg-4" type="email" ng-model="email" name="email"  size="30"
         placeholder="email" valid-email ng-model-options="{ debounce: 1000 }" required>
-        <span class="alert alert-success" ng-show="form.email.$valid">e-mail é valido</span>
+        <span class="alert alert-success" ng-show="form.email.$valid">E-mail é valido</span>
         <span class="alert alert-warning" ng-show="form.email.$pending.validEmail">Verificando se email é valido...</span>
-        <span class="alert alert-info" ng-show="form.email.$error.validEmail && didYouMean">Você quis dizer:{{didYouMean}}?</span>
-        <span class="alert alert-danger" ng-show="form.email.$error.validEmail && !didYouMean">e-mail invalido</span>
-        <div>
-            <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || form.$pending">Adicionar</button>
+        <span class="alert alert-info" ng-show="form.email.$error.validEmail && didYouMean">Você quis dizer: {{didYouMean}}?</span>
+        <span class="alert alert-danger" ng-show="form.email.$error.validEmail && !didYouMean">E-mail invalido</span>
+        <div class="mt-2">
+            <button class="btn btn-primary mr-3" type="submit" ng-disabled="form.$invalid || form.$pending">Adicionar</button>
             <button ng-click="return()" class="btn btn-secondary">Voltar</button>
         </div>
     </form>

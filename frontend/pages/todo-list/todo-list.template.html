@@ -1,6 +1,6 @@
 <h2 class="text-center">Lista de Tarefas</h2>
 <div ng-controller="TodoListController">
-    <div class="row">
+    <div class="row justify-content-between align-items-center header-holder">
         <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link {{exibPendent ? 'active' : ''}}" ng-Click="exibPendent = true" aria-current="page" href="#">Pendentes</a>
@@ -9,20 +9,23 @@
               <a class="nav-link {{!exibPendent ? 'active' : ''}}" ng-Click="exibPendent = false" href="#">Concluidas</a>
             </li>
           </ul>
+          <span class="count">{{remaining()}} Tarefas Pendentes</span>
     </div>
     <div class="row">
-        <ul class="col-12 list-group list-group-flush">
+        <ul class="col-12 list-group list-group-flush p-0">
             <li class="list-group-item task-row" ng-repeat="todo in todos" ng-if="checkPendent(todo)">
                 <label class="checkbox">
                     <input ng-Click="todo.status == 'pendente' ? changeStatusTask(todo,'concluida') : askPermission(todo)" ng-if="todo.status == 'pendente'" type="checkbox" ng-model="todo.checked">
                     <span class="done-{{todo.status != 'pendente'}}">{{todo.description}}</span>
                     <!-- <button ng-Click="changeStatusTask(todo,'concluida')" ng-if="todo.status == 'pendente'">Concluir</button> -->
                 </label>
-                <button class="btn btn-outline-warning" ng-Click="askPermission(todo)" ng-if="todo.status != 'pendente'" ng-disabled="todo.reset_status_count >= 2">Devolver Tarefa</button>
+                <button class="btn btn-outline-warning" ng-Click="askPermission(todo)" ng-if="todo.status != 'pendente'" ng-disabled="todo.reset_status_count >= 2">Restaurar</button>
             </li>
         </ul>
-        <button ng-click="redirectForm()" class="btn btn-primary">Adicionar tarefa</button>
-        <button ng-click="newTasks()" class="btn btn-info">Estou sem tarefas!</button>
-        <span>{{remaining()}} Tarefas Pendentes</span>
+        <div class="col-12 options">
+            <button ng-click="redirectForm()" class="btn btn-primary mr-3">Adicionar tarefa</button>
+            <button ng-click="newTasks()" class="btn btn-info">Estou sem tarefas!</button>
+        </div>
+        
     </div>
 </div>

@@ -1,15 +1,36 @@
 body{
   font-family: 'Montserrat', sans-serif;
+  background: #E1E2E1;
+}
+.app-holder{
+  border-radius: 10px;
+  padding: 30px;
+  background: #F5F5F6;
+  margin-top: 50px;
 }
 .done-true {
     text-decoration: line-through;
     color: grey;
   }
 
+.header-holder{
+  flex-direction: column-reverse;
+  
+}
+
+@media (min-width: 768px) {
+  .header-holder{
+    flex-direction: row;
+  }
+}
 
 .task-row{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.task-row label{
+  margin-bottom: 0px;
 }
 .task-row button:disabled,
 button[disabled] { 
@@ -17,12 +38,22 @@ button[disabled] {
   border-color: gray;
 }
 
-.form-holder{
+.options{
   display: flex;
-  align-items: center;
+  justify-content: center;
+  padding: 35px 0 0;
+
 }
+.form-holder{
+  align-items: center;
+  padding: 15px;
+}
+
 .form-holder input {
-  margin: 15px 0;
+  margin-top: 15px;
+}
+.form-holder span {
+  margin: 15px;
 }
 .popeye-modal-container {
   background-color: rgba(0, 0, 0, 0.2);
